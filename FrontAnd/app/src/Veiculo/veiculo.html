@@ -1,0 +1,133 @@
+
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Veiculos</h3>
+                  </div>
+                  <div class="panel-body">
+
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Novo Veiculo
+        </button>
+
+
+
+
+
+
+  <form ng-submit="saveVeiculo(v)" ng-hide="!showAddEditUser" name="form1">
+
+    <div class="form-group">
+      <label>Apartamentos</label>
+      <div >
+        <select  ng-model="v.apv.id">
+           <option ng-repeat="ap_v in aps" value="{{ap_v.id}}">{{ap_v.descricao}}</option>
+         </select>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+            <label>Modelo</label>
+                <input type="text" placeholder="Modelo" ng-model="v.modelo" required>
+             </div>
+
+            <div class="form-group">
+                  <label>Cor</label>
+                      <input class="form-control" type="text" placeholder="Cor" ng-model="v.cor"  required>
+               </div>
+
+
+      <div class="form-group">
+        <div ng-class="{'has-error': form1.placaveiculo$touched && (form1.placaveiculo.$error.required || form1.placaveiculo.$error.minlength) ,
+            'has-success':form1.placaveiculo.$valid}">
+           <label>Placa</label>
+               <input   class="form-control" type="text" placeholder="HCE-5432" ng-model="v.placa"
+                    placa  ng-minlength=8  maxlength="8"  name="placaveiculo"  required >
+
+                            <span ng-show="form1.placaveiculo.$touched && form1.placaveiculo.$error.minlength" class="label label-danger">
+                              * Placa : Iválida  faltam {{8- placaveiculo.$viewValue.length}}    Nº(s) </span>
+                     </div>
+            </div>
+
+
+
+
+    <div class="form-group">
+        <label>Motorista </label>
+             <input class="form-control" type="text" placeholder="Motorista" ng-model="v.motorista "  required>
+       </div>
+
+
+
+  <div class="form-group">
+         <label>CNH</label>
+             <input class="form-control" type="text" placeholder="CNH" ng-model="v.cnh"  required>
+      </div>
+
+
+
+
+      <button  class="btn btn-success btn-s"   type="submit">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+          <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+            <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+
+
+
+  </form>
+<!-- <pre>{{v|json}}</pre> -->
+<br><br>
+
+  <div class="row">
+                    <div class="col-lg-100">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+
+         <thead>
+            <tr>
+               <th>Modelo</th>
+               <th>Cor</th>
+               <th>Placa</th>
+               <th>Motorista</th>
+               <th>CNH</th>
+                <th>Apartamento</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="v in vs" class="active">
+
+          <td>{{ v.modelo }}</td>
+          <td>{{ v.cor }}</td>
+          <td>{{ v.placa }}</td>
+          <td>{{ v.motorista }}</td>
+          <td>{{ v.cnh }}</td>
+          <td>{{ v.apv.descricao }}</td>
+
+
+          <td><button ng-click="editVeiculo(v)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteVeiculo(v)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

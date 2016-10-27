@@ -1,0 +1,105 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Prestar Contas</h3>
+                  </div>
+                  <div class="panel-body">
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Registrar contas do condomínio:
+        </button>
+
+  <form ng-submit="savePrestarConta(t)" ng-hide="!showAddEditUser">
+
+
+
+
+  <div class="form-group">
+            <label>Descrição do serviço:</label>
+                <input class="form-control"   type="text" placeholder="Registrar o tipo de serviço" ng-model="t.descricao" required>
+             </div>
+
+
+
+    <div class="form-group">
+        <label>Nome do Funcionário: </label>
+             <input class="form-control"   type="text" placeholder="Nome" ng-model="t.funcionario "  required>
+       </div>
+
+
+       <div class="form-group">
+           <label>Empresa do Funcionário: </label>
+                <input class="form-control"   type="text" placeholder="Empresa" ng-model="t.empresa "  required>
+          </div>
+
+
+          <div class="form-group">
+               <label>Valor: </label>
+               <div class="form-group input-group">
+               <span class="input-group-addon">$</span>
+                    <input  class="form-control" type="text" placeholder="Valor" ng-model="t.valor "  required>
+                    <span class="input-group-addon">.00</span>
+              </div>
+
+            </div>
+
+
+
+
+            <button  class="btn btn-success btn-s"   type="submit">
+                   <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                         <button type="reset"  class="btn btn-danger btn-s">
+                      <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+                  <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+  </form>
+
+
+<br><br>
+  <div class="row">
+                      <div class="col-lg-100">
+
+                          <div class="table-responsive">
+                              <table class="table table-bordered table-hover table-striped">
+         <thead>
+            <tr>
+               <th>Descrição</th>
+               <th>Funcionário</th>
+               <th>Empresa</th>
+               <th>Valor total do serviço</th>
+               <th>Data e Hora da atualização</th>
+
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="t in ts" class="active">
+
+          <td>{{t.descricao}}</td>
+          <td>{{ t.funcionario }}</td>
+          <td>{{ t.empresa }}</td>
+          <td>{{ t.valor }}</td>
+          <td>{{ t.registerDate | date : "dd/MM/yyyy 'as' h:mma"  }}</td>
+
+
+        
+
+          <td><button ng-click="editPrestarConta(t)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deletePrestarConta(t)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

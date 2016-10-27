@@ -1,0 +1,96 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Bicicletas</h3>
+                  </div>
+                  <div class="panel-body">
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Nova Bicicleta
+        </button>
+
+  <form ng-submit="saveBicicleta(b)" ng-hide="!showAddEditUser">
+
+
+    <div class="form-group">
+        <label>Apartamentos</label>
+        <div >
+          <select  ng-model="b.apb.id">
+             <option ng-repeat="ap_b in aps" value="{{ap_b.id}}">{{ap_b.descricao}}</option>
+           </select>
+        </div>
+      </div>
+
+
+
+  <div class="form-group">
+            <label>Modelo</label>
+                <input class="form-control"  type="text" placeholder="Modelo" ng-model="b.modelo" required>
+             </div>
+
+
+
+  <div class="form-group">
+        <label>Dono </label>
+             <input class="form-control"  type="text" placeholder="Dono" ng-model="b.dono "  required>
+       </div>
+
+
+  <div class="form-group">
+         <label>Cor</label>
+             <input class="form-control"  type="text" placeholder="Cor" ng-model="b.cor"  required>
+      </div>
+
+
+
+
+
+      <button  class="btn btn-success btn-s"   type="submit">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+          <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+            <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+  </form>
+  <br><br>
+
+  <div class="row">
+                   <div class="col-lg-100">
+
+                       <div class="table-responsive">
+                           <table class="table table-bordered table-hover table-striped">
+         <thead>
+            <tr>
+               <th>Modelo</th>
+               <th>Cor</th>
+               <th>Dono</th>
+                <th>Apartamento</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="b in bs" class="active">
+
+          <td>{{ b.modelo }}</td>
+          <td>{{ b.cor }}</td>
+          <td>{{ b.dono }}</td>
+          <td>{{ b.apb.descricao }}</td>
+
+        
+
+          <td><button ng-click="editBicicleta(b)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteBicicleta(b)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

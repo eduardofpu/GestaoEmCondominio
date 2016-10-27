@@ -1,0 +1,154 @@
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-100 col-md-offset-0">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <br/><h3>Aluguel de Garagem</h3>
+                  </div>
+                  <div class="panel-body">
+
+  <button type="button" ng-hide="showAddEditGaragem" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+  Novo Aluguel de Garagem
+  </button>
+
+
+
+
+
+  <form ng-submit="saveAluguelGaragem(al)" ng-hide="!showAddEditGaragem" name="form1">
+
+    <div class="form-group">
+      <label>Modelo do Veículo</label>
+      <input class="form-control"  type="text" placeholder="Modelo" ng-model="al.modelo" >
+    </div>
+
+  <div class="form-group">
+      <label>Cor do veículo</label>
+      <input class="form-control"  type="text" placeholder="Cor" ng-model="al.cor" >
+    </div>
+
+
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.placaveiculo$touched && (form1.placaveiculo.$error.required || form1.placaveiculo.$error.minlength) ,
+          'has-success':form1.placaveiculo.$valid}">
+         <label>Placa</label>
+             <input   class="form-control" type="text" placeholder="HCE-5432" ng-model="al.placa"
+                  placa  ng-minlength=8  maxlength="8"  name="placaveiculo"  required >
+
+                          <span ng-show="form1.placaveiculo.$touched && form1.placaveiculo.$error.minlength" class="label label-danger">
+                            * Placa : Iválida  faltam {{8- placaveiculo.$viewValue.length}}    Nº(s) </span>
+                   </div>
+          </div>
+
+
+    <div class="form-group">
+      <label>Motorista</label>
+      <input class="form-control"  type="text" placeholder="Motorista" ng-model="al.motorista" >
+    </div>
+
+    <div class="form-group">
+      <label>CNH</label>
+      <input class="form-control"  type="text" placeholder="CNH"
+      maxlength="11" ng-model="al.cnh">
+    </div>
+
+
+      <div class="form-group">
+          <label>Data Inicial</label>
+          <div class="form-group required">
+            <div class="col-sm-7">
+              <div ng-bind="al.dataInicial"></div>
+            </div>
+          </div>
+
+          <input class="form-control"  type= "date"  placeholder="yyyy-MM-dd" ng-model="al.dataInicial" maxlength="10" required>
+
+
+
+    </div>
+
+    <div class="form-group">
+      <label>Data Final</label>
+      <div class="form-group required">
+        <div class="col-sm-7">
+          <div ng-bind="al.dataFinal"></div>
+        </div>
+      </div>
+      <input class="form-control"  type="date" placeholder="yyyy-MM-dd" ng-model="al.dataFinal" maxlength="10" required>
+
+    </div>
+
+    <div class="form-group">
+      <label>Descrição do Cliente </label>
+      <input class="form-control"  type="text" placeholder="Description" ng-model="al.descricaoCliente">
+    </div>
+
+    <button  class="btn btn-success btn-s"   type="submit">
+           <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                 <button type="reset"  class="btn btn-danger btn-s">
+              <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+        <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+          <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+
+  </form>
+  <!--<pre>{{al|json}}</pre>-->
+  <br><br>
+
+
+  <div class="row">
+    <div class="col-lg-200">
+
+      <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+
+          <th>Garagem do morador </th>
+          <th>Modelo</th>
+          <th>Cor</th>
+          <th>Placa</th>
+          <th>Motorista</th>
+          <th>CNH</th>
+          <th>Data Inicial</th>
+          <th>Data Final</th>
+          <th>Apartamento do Cliente</th>
+
+          <th>Editar</th>
+          <th>Deletar</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="al in als" class="active">
+
+
+          <td>{{ al.user.userid.descricao}}</td>
+          <td>{{ al.modelo }}</td>
+          <td>{{ al.cor }}</td>
+          <td>{{ al.placa }}</td>
+          <td>{{ al.motorista }}</td>
+          <td>{{ al.cnh }}</td>
+          <td>{{ al.dataInicial | date : "dd/MM/yyyy " }}</td>
+          <td>{{ al.dataFinal  | date : "dd/MM/yyyy " }}</td>
+          <td>{{ al.descricaoCliente }}</td>
+
+          <td><button ng-click="editAluguelGaragem(al)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteAluguelGaragem(al)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div>
